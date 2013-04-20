@@ -7,12 +7,7 @@
   },
   "dependencies": {
     "express": "3.1.1",
-    "jshtml": "*",
-    "stylus": "*",
-    "mongojs": "0.7.x"    
-  },
-  "devDependencies": {
-    "mocha": "1.9.x",
-    "should": "1.2.x"
+    "jade": "*",
+    "stylus": "*"
   }
 }
