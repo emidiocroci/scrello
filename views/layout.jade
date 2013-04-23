@@ -1,7 +1,18 @@
 doctype 5
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+ head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/style.css')
+ body
+  .navbar.navbar-inverse.navbar-fixed-top
+   .navbar-inner
+    .container
+     button(type="button", data-toggle="collapse", data-target=".nav-collapse").btn.btn-navbar.collapsed
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+     a.brand(href="/", title="Scrello") Scrello
+     .nav-collapse.collapse(style="height: 0px")
+	 ul.nav
+	  li: a(href='/', title='Home') Home
+      li: a(href='/About', title='About') About
