@@ -7,7 +7,7 @@ routes = require("./routes")
 user = require("./routes/user")
 http = require("http")
 path = require("path")
-coffeeMiddleware = require('coffee-middleware')
+coffeescript = require("connect-coffee-script")
 
 app = express()
 
@@ -27,7 +27,7 @@ app.use express.static(path.join(__dirname, "public"))
 
 # development only
 app.use express.errorHandler()  if "development" is app.get("env")
-app.use coffeeMiddleware { src: __dirname + '/public', compress: true }
+app.use coffeescript({ src: __dirname, bare: true })
 app.get "/", routes.index
 app.get "/users", user.list
 http.createServer(app).listen app.get("port"), ->
