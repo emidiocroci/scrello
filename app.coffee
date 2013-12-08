@@ -27,7 +27,7 @@ app.use express.static(path.join(__dirname, "public"))
 
 # development only
 app.use express.errorHandler()  if "development" is app.get("env")
-app.use coffeeMiddleware({ src: __dirname + '/public', compress: true })
+app.use coffeeMiddleware { src: __dirname + '/public', compress: true }
 app.get "/", routes.index
 app.get "/users", user.list
 http.createServer(app).listen app.get("port"), ->
