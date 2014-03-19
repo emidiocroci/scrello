@@ -1,19 +1,15 @@
 {
-  "name": "application-name",
+  "name": "scrello",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.1.1",
-    "jade": "latest",
-    "stylus": "*",
-	"mongoose": "*",
-	"mongodb": "*"
+    "express": "3.4.6",
+    "jade": "*",
+    "mongodb": "~1.3.19"
   },
   "devDependencies": {
-    "mocha": "1.9.x",
-    "should": "1.2.x"
-   }
+  }
 }
