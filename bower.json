@@ -1,0 +1,23 @@
+{
+  "name": "Scrello",
+  "version": "0.0.0",
+  "homepage": "https://github.com/emidiocroci/scrello",
+  "authors": [
+    "Emidio Croci <emidio.croci@gmail.com>"
+  ],
+  "description": "The scrum side of Trello",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.14",
+    "bootstrap": "~3.1.1"
+  }
+}
