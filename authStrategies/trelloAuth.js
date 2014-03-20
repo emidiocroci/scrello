@@ -1,4 +1,5 @@
-var userService = require('../services/userService');
+var mongoose = require('mongoose'),
+    User = mongoose.model('User');
 
 module.exports = function() {
     var _passport = require('passport'),
@@ -16,7 +17,7 @@ module.exports = function() {
                 expiration: "never"
             }}, 
         function(req, token, tokenSecret, profile, done) {
-            userService.authenticate(profile.username, profile.idOrganizations, done);
+            User.authenticate(profile.username, profile.idOrganizations, done);
         }));
 
     this.passport = _passport;
