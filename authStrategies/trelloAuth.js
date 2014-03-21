@@ -8,7 +8,6 @@ module.exports = function() {
         model.User.authenticate(profile.username, function (err, usr) {            
             if (err) throw err;
             usr.idOrganizations = profile.idOrganizations;
-            console.log(usr);
             usr.save(function (err) {
                 if (err) done(err, null);
                 else done(null, usr);
@@ -28,8 +27,6 @@ module.exports = function() {
                 expiration: "never"
             }},
         this.callBack));
-
-    
 
     this.passport = _passport;
 }
