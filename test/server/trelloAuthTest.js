@@ -17,8 +17,10 @@ describe("Trello authentication strategy", function () {
 				null, 
 				null, 
 				{
-					username: 'username', 
-					idOrganizations: ['1','2']
+					_json: {
+						username: 'username', 
+						idOrganizations: ['1','2']
+					}				
 				}, 
 				function (err, res) {
 					res.idOrganizations.length.should.equal(2);

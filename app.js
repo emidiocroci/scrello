@@ -11,6 +11,7 @@ var path = require('path');
 var db = require('./model')
 var TrelloAuth = require('./authStrategies/trelloAuth');
 var trelloAuth = new TrelloAuth();
+var authMiddleware = require('./middleware/authMiddleware');
 var app = express();
 
 // all environments
@@ -34,18 +35,21 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-
 app.get('/login', trelloAuth.passport.authenticate('trello'));
 app.get('/cb', trelloAuth.passport.authenticate('trello', {
     successRedirect: '/success',
     failureRedirect: '/error'
 }));
+app.all('*', authMiddleware);
+app.get('/', routes.index);
+
 app.get('/success', function (req, res) {
     console.log('success');
+    res.redirect('/');
 });
 app.get('/error', function (req, res) {
     cbonsole.log('error');
+    res.send(500,'Error!')
 });
 
 http.createServer(app).listen(app.get('port'), function(){

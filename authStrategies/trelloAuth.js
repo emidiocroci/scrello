@@ -5,9 +5,10 @@ module.exports = function() {
         TrelloStrategy = require('passport-trello').Strategy;    
 
     this.callBack = function(req, token, tokenSecret, profile, done) {
-        model.User.authenticate(profile.username, function (err, usr) {            
+        console.log(profile);
+        model.User.authenticate(profile._json.username, function (err, usr) {            
             if (err) throw err;
-            usr.idOrganizations = profile.idOrganizations;
+            usr.idOrganizations = profile._json.idOrganizations;
             usr.save(function (err) {
                 if (err) done(err, null);
                 else done(null, usr);
@@ -27,6 +28,16 @@ module.exports = function() {
                 expiration: "never"
             }},
         this.callBack));
+
+    _passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+    _passport.deserializeUser(function(id, done) {
+        model.User.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
 
     this.passport = _passport;
 }
