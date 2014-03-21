@@ -9,6 +9,8 @@ module.exports = function() {
         model.User.authenticate(profile._json.username, function (err, usr) {            
             if (err) throw err;
             usr.idOrganizations = profile._json.idOrganizations;
+            usr.token = token;
+            usr.tokenSecret = tokenSecret;
             usr.save(function (err) {
                 if (err) done(err, null);
                 else done(null, usr);

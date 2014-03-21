@@ -10,12 +10,12 @@ var chai = require('chai');
 chai.should();
 
 describe("Trello authentication strategy", function () {
-	it("should update the user with his organizations after the login", function (done) {
+	it("should update the user with his organizations and token after the login", function (done) {
 		User.create({usename: 'username'}, function (err, usr) {
 			trelloAuth.callBack(
 				null, 
-				null, 
-				null, 
+				'token', 
+				'tokenSecret', 
 				{
 					_json: {
 						username: 'username', 
@@ -26,6 +26,8 @@ describe("Trello authentication strategy", function () {
 					res.idOrganizations.length.should.equal(2);
 					res.idOrganizations[0].should.equal('1');
 					res.idOrganizations[1].should.equal('2');
+					res.token.should.equal('token');
+					res.tokenSecret.should.equal('tokenSecret');
 					done();
 				});
 		});

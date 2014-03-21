@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema(
     {
         username: String,
-        idOrganizations: Array
+        idOrganizations: Array,
+        token: String,
+        tokenSecret: String
     });
 
 userSchema.statics.authenticate = function (username, done) {
