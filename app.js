@@ -9,7 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var db = require('./model')
-var TrelloAuth = require('./services/trelloAuth');
+var TrelloAuth = require('./authStrategies/trelloAuth');
 var trelloAuth = new TrelloAuth();
 var app = express();
 
@@ -28,8 +28,6 @@ app.use(trelloAuth.passport.session());
 app.use(app.router);
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
-
-console.log(trelloAuth.passport);
 
 // development only
 if ('development' == app.get('env')) {

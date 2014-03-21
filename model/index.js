@@ -32,4 +32,4 @@ process.on('SIGINT', function() {
 });
 
 // load schemas
-require('./user');
+exports.User = require('./user');

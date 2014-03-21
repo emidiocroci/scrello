@@ -1,9 +1,20 @@
-var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+var model = require('../model');
 
 module.exports = function() {
     var _passport = require('passport'),
         TrelloStrategy = require('passport-trello').Strategy;    
+
+    this.callBack = function(req, token, tokenSecret, profile, done) {
+        model.User.authenticate(profile.username, function (err, usr) {            
+            if (err) throw err;
+            usr.idOrganizations = profile.idOrganizations;
+            console.log(usr);
+            usr.save(function (err) {
+                if (err) done(err, null);
+                else done(null, usr);
+            });
+        });
+    };
 
     _passport.use('trello', 
         new TrelloStrategy({
@@ -15,10 +26,10 @@ module.exports = function() {
                 scope: "read,write",
                 name: "Scrello",
                 expiration: "never"
-            }}, 
-        function(req, token, tokenSecret, profile, done) {
-            User.authenticate(profile.username, profile.idOrganizations, done);
-        }));
+            }},
+        this.callBack));
+
+    
 
     this.passport = _passport;
 }

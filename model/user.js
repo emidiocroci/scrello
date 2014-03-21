@@ -29,4 +29,4 @@ userSchema.statics.authenticate = function (username, done) {
         done(new Error('Cannot authenticate an user with an empty or null username!'));
 };
 
-var User = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
