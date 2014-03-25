@@ -22,6 +22,7 @@
     "karma-junit-reporter": "~0.2.1",
     "jasmine-node": "~1.14.2",
     "mockgoose": "~1.7.10",
-    "chai": "~1.9.1"
+    "chai": "~1.9.1",
+    "supertest": "~0.10.0"    
   }
 }
