@@ -1,4 +1,6 @@
-var trelloMiddleware = require('../../middleware/trello-middleware');
+"use strict";
+
+var trelloMiddleware = require('../../middleware/trello-middleware'),
 	chai = require('chai');
 
 chai.should();

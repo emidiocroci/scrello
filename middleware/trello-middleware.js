@@ -1,3 +1,5 @@
+"use strict";
+
 var Trello = require('node-trello');
 
 module.exports = function (req, res, next) {
