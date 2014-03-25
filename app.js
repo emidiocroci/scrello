@@ -3,15 +3,18 @@
  * Module dependencies.
  */
 
+/*globals require,process,__dirname*/
+
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var db = require('./model')
+var db = require('./model');
 var TrelloAuth = require('./authStrategies/trelloAuth');
 var trelloAuth = new TrelloAuth();
 var authMiddleware = require('./middleware/authMiddleware');
+var trello = require('./middleware/trello-middleware');
 var app = express();
 
 // all environments
@@ -31,7 +34,7 @@ app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
     app.use(express.errorHandler());
 }
 
@@ -41,6 +44,8 @@ app.get('/cb', trelloAuth.passport.authenticate('trello', {
     failureRedirect: '/error'
 }));
 app.all('*', authMiddleware);
+//trello proxy
+app.all(/\/trello\/(.+)/, trello);
 app.get('/', routes.index);
 
 app.get('/success', function (req, res) {
