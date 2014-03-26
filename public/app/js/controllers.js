@@ -2,8 +2,8 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+angular.module('scrello.controllers', []).
+  controller('SprintCtrl', [function() {
 
   }])
   .controller('MyCtrl2', [function() {
