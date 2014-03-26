@@ -30,6 +30,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
