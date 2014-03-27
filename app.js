@@ -31,7 +31,6 @@ app.use(express.session());
 app.use(trelloAuth.passport.initialize());
 app.use(trelloAuth.passport.session());
 app.use(app.router);
-app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -54,7 +53,7 @@ app.get('/success', function (req, res) {
     res.redirect('/');
 });
 app.get('/error', function (req, res) {
-    cbonsole.log('error');
+    console.log('error');
     res.send(500,'Error!')
 });
 
