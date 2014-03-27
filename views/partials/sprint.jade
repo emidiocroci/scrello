@@ -1,1 +1,11 @@
-.p Sprint
+form.form-horizontal(role='form')
+    legend Sprint
+    .form-group
+        label.col-sm-2.control-label(for='start') Start                
+        .col-sm-10
+            input(ui-date, value='{{sprint.start}}').form-control
+    .form-group
+        label.col-sm-2.control-label(for='length') Length                
+        .col-sm-10
+            input(value='{{sprint.length}}').form-control
+    

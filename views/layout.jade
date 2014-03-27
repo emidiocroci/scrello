@@ -3,6 +3,7 @@ html(ng-app='scrello')
     head
         title= title
         link(rel='stylesheet',href='lib/jquery-ui/themes/smoothness/jquery-ui.css')
+        link(rel='stylesheet',href='lib/bootstrap/dist/css/bootstrap.css')
         script(type='text/javascript',src='lib/jquery/dist/jquery.js')
         script(type='text/javascript',src='lib/jquery-ui/ui/jquery-ui.js')
         script(type='text/javascript',src='lib/angular/angular.js')
@@ -13,5 +14,15 @@ html(ng-app='scrello')
         script(type='text/javascript',src='app/js/controllers.js')
         script(type='text/javascript',src='app/js/services.js')
         script(type='text/javascript',src='app/js/directives.js')
+        script(type='text/javascript',src='lib/bootstrap/dist/js/bootstrap.js')
     body
-        block content
+        nav(role="navigation").navbar.navbar-default
+            .navbar-header
+                button(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse").navbar-toggle
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a(href="#" ).navbar-brand #{title}
+            .collapse.navbar-collapse.navbar-ex1-collapse
+        block content                
