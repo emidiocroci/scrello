@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('scrello.controllers', []).
-  controller('SprintCtrl', [function() {
+    controller('SprintCtrl', [function($scope) {
+        
+    }])
+    .controller('MyCtrl2', [function() {
 
-  }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
+    }]);
