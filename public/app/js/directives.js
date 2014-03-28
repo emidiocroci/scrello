@@ -4,8 +4,11 @@
 
 
 angular.module('scrello.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+  directive('notifications', [function() {
+    return {
+        restrict: 'E',
+        scope: {
+            type: '=type'
+        }
     };
   }]);
