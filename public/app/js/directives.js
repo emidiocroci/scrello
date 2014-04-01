@@ -8,14 +8,15 @@ angular.module('scrello.directives', []).
     return {
         restrict: 'E',
         scope: {
-            type: '=type'
+            notificationType: '='
         },
-        replace: true,
-        template: '<div class="alert alert-success"></div>',
         link: function (scope, element, attrs) {
-            scope.$watch('type', function () {
-                console.log('ciao');
-            });
+            scope.$watch('notificationType', function () {
+                if (!scope.notificationType)
+                    element.html('');
+                else
+                    element.html('<div class="alert alert-' + scope.notificationType + '"></div>');
+        });
         }
     };
   }]);
