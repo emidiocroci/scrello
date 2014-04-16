@@ -30,6 +30,4 @@ describe('controllers', function() {
         backend.flush();
         expect(scope.notification.type).toBe('success');
     });
-
-
 });
