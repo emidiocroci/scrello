@@ -9,6 +9,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var sprint = require('./routes/sprint');
 var http = require('http');
 var path = require('path');
 var db = require('./model');
@@ -43,7 +44,12 @@ app.get('/cb', trelloAuth.passport.authenticate('trello', {
     successRedirect: '/success',
     failureRedirect: '/error'
 }));
-app.all('*', authMiddleware);
+
+if ('testing' !== app.get('env'))
+{
+    app.all('*', authMiddleware);
+}
+
 app.get('/partials/:name', routes.partials);
 //trello proxy
 app.all(/\/trello\/(.+)/, trello);
@@ -58,6 +64,11 @@ app.get('/error', function (req, res) {
     res.send(500,'Error!')
 });
 
+
+app.post('/sprints', sprint.save);
+
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+module.exports = app;
