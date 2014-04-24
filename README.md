@@ -3,6 +3,14 @@ Scrello - the scrum side of trello
 
 Scrello, the scrum side of trello, is a web application that let you manage a full scrum process using Trello as a digital scrum board.
 
+Trello - Developer API Keys
+===========================
+
+Before you start you need the **Trello Developer API Keys**. You can generate the key and secret hash [here](https://trello.com/1/appKey/generate).
+
+You can use the key and secret values in this way:
+
+	~$ sudo TRELLO_KEY=key TRELLO_SECRET=secret node app.js
 
 Installation Requirements
 =========================
