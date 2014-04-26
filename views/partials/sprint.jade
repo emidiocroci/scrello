@@ -5,9 +5,9 @@ form.form-horizontal(role='form')
         .col-sm-4
             input(ui-date, ng-model='sprint.startDate').form-control
     .form-group
-        label.col-sm-2.control-label(for='length') Length                
+        label.col-sm-2.control-label(for='end') End                
         .col-sm-4
-            input(ng-model='sprint.length').form-control
+            input(ui-date, ng-model='sprint.endDate').form-control
     .col-sm-6
         button.btn.btn-primary(type='button',ng-click='save(sprint)').pull-right Save
     
