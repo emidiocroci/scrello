@@ -1,5 +1,6 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    .container
+        notification(notification-type='notification.type',notification-message='notification.message')
+        div(ng-view)

@@ -3,9 +3,21 @@
 /* Directives */
 
 
-angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+angular.module('scrello.directives', []).
+  directive('notification', ['$compile', function($compile) {
+    return {
+        restrict: 'E',
+        scope: {
+            notificationType: '=',
+            notificationMessage: '='
+        },
+        link: function (scope, element, attrs) {
+            scope.$watch('notificationType', function () {
+                if (!scope.notificationType)
+                    element.html('');
+                else
+                    element.html('<div class="alert alert-' + scope.notificationType + '">'+ scope.notificationMessage  +'</div>');
+        });
+        }
     };
   }]);

@@ -4,7 +4,6 @@ module.exports = function(config){
 
     files : [
       'public/lib/angular/angular.js',
-      'public/lib/angular/angular-*.js',
       'test/client/lib/angular/angular-mocks.js',
       'public/app/js/**/*.js',
       'test/client/unit/**/*.js'
@@ -13,14 +12,15 @@ module.exports = function(config){
     exclude : [
       'public/lib/angular/angular-loader.js',
       'public/lib/angular/*.min.js',
-      'public/lib/angular/angular-scenario.js'
     ],
 
     autoWatch : true,
 
+    usePolling: true,
+
     frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+    browsers : ['Firefox'],
 
     plugins : [
             'karma-junit-reporter',

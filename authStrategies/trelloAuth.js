@@ -5,7 +5,6 @@ module.exports = function() {
         TrelloStrategy = require('passport-trello').Strategy;    
 
     this.callBack = function(req, token, tokenSecret, profile, done) {
-        console.log(profile);
         model.User.authenticate(profile._json.username, function (err, usr) {            
             if (err) throw err;
             usr.idOrganizations = profile._json.idOrganizations;
