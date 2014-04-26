@@ -30,4 +30,12 @@ describe('controllers', function() {
         backend.flush();
         expect(scope.notification.type).toBe('success');
     });
+
+    it('should show the failure notification in case of error during save', function(done) {
+        backend.expectPOST('/sprints', { sprint: sprint }).respond(500, 'Internal Server Error');
+        scope.save(sprint);
+        backend.flush();
+        expect(scope.notification.type).toBe('danger'); 
+        expect(scope.notification.message).toBe('Internal Server Error'); 
+    });
 });

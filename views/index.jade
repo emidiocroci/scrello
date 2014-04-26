@@ -1,4 +1,6 @@
 extends layout
 
 block content
-    div(ng-view)
+    .container
+        notification(notification-type='notification.type',notification-message='notification.message')
+        div(ng-view)

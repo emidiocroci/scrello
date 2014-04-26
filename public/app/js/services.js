@@ -6,10 +6,10 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('scrello.services', []).
-    factory('success', function ($rootScope, $timeout) {
-        return function (message) {
+    factory('notify', function ($rootScope, $timeout) {
+        return function (type, message) {
             $rootScope.notification = {
-                type: 'success',
+                type: type,
                 message: message || ''
             };
             $timeout(function() {
