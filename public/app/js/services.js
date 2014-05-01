@@ -7,14 +7,29 @@
 // In this case it is a simple value service.
 angular.module('scrello.services', []).
     factory('notify', function ($rootScope, $timeout) {
-        return function (type, message) {
+        return function (type, isPersistent, message) {
             $rootScope.notification = {
                 type: type,
                 message: message || ''
             };
-            $timeout(function() {
-                $rootScope.notification = null;
-            }, 3000);
+            if (!isPersistent)
+                $timeout(function() {
+                    $rootScope.notification = null;
+                }, 3000);
         };
+    }).
+    factory('organizations', function($http, $q) {        
+        var deferred = $q.defer();
+        var promise = $http.get('/trello/members/me/organizations', { cache: true })
+            .success(function (data) {
+                if (data.length > 0)
+                    deferred.resolve(data);
+                else
+                    deferred.reject('No organizations were found.')
+            })
+            .error(function (data) {
+                deferred.reject(data);
+            })
+        return deferred.promise;
     }).
     value('version', '0.1');

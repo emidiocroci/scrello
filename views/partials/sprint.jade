@@ -8,6 +8,9 @@ form.form-horizontal(role='form')
         label.col-sm-2.control-label(for='end') End                
         .col-sm-4
             input(ui-date, ng-model='sprint.endDate').form-control
+    .form-group
+        label.checkbox
+            input(type='checkbox', value='{{board.name}}', id='board.id',ng-repeat='board in available-boards')        
     .col-sm-6
         button.btn.btn-primary(type='button',ng-click='save(sprint)').pull-right Save
     

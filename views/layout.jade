@@ -16,7 +16,7 @@ html(ng-app='scrello')
         script(type='text/javascript',src='app/js/directives.js')
         script(type='text/javascript',src='lib/bootstrap/dist/js/bootstrap.js')
     body
-        nav(role="navigation").navbar.navbar-default
+        nav(role="navigation", ng-controller='NavCtrl').navbar.navbar-default
             .navbar-header
                 button(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse").navbar-toggle
                     span.sr-only Toggle navigation
@@ -24,5 +24,12 @@ html(ng-app='scrello')
                     span.icon-bar
                     span.icon-bar
                 a(href="#" ).navbar-brand #{title}
+                ul.nav.navbar-nav
+                    li.dropdown(ng-if="organizations")
+                        a.dropdown-toggle(data-toggle='dropdown', href='#') {{organization.name}}
+                            b.caret                        
+                        ul.dropdown-menu
+                            li(ng-repeat='org in organizations')
+                                a(href='#') {{org.name}}                
             .collapse.navbar-collapse.navbar-ex1-collapse
         block content                
