@@ -10,6 +10,10 @@ var sprintSchema = new Schema(
         endDate: {
             type: Date,
             required: true
+        },
+        org: {
+            type: String,
+            required: true
         }
     });
 

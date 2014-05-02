@@ -10,7 +10,8 @@ describe('controllers', function() {
     var backend;
     var scope;
     var controller,
-        expectedOrgs = [
+        expectedOrgs = {
+            orgs: [
             {
                 id: 'id1', 
                 name: 'name1'
@@ -18,16 +19,20 @@ describe('controllers', function() {
             {
                 id: 'id2', 
                 name: 'name2'
-            }];
+            }],
+            getCurrent: function () {
+                return this.orgs[0];
+            }
+        };
 
     beforeEach(module('scrello.controllers'));
 
     beforeEach(inject(function ($injector, $controller) {
         backend = $injector.get('$httpBackend');
         scope = $injector.get('$rootScope');
-        backend.expectGET('/trello/members/me/organizations')
-            .respond(200, expectedOrgs);
-        controller = $controller('SprintCtrl', { $scope: scope });
+        //backend.expectGET('/trello/members/me/organizations')
+        //    .respond(200, expectedOrgs);
+        controller = $controller('SprintCtrl', { $scope: scope, organizations: expectedOrgs });
     }));
 
     afterEach(function () {
@@ -36,11 +41,12 @@ describe('controllers', function() {
     });
 
     describe('Sprint controller', function() {
-        it('should save the sprint on save call', function() {
+        it('should save the sprint on save call by adding the selected organization', function() {            
             backend.expectPOST('/sprints', { sprint: sprint }).respond(200, 'ok');
-            scope.save(sprint);
-            backend.flush();
-            expect(scope.notification.type).toBe('success');
+            scope.save(sprint);            
+            backend.flush();            
+            expect(scope.notification.type).toBe('success');            
+            expect(sprint.org).toBe(expectedOrgs.orgs[0].id);
         });
 
         it('should show the failure notification in case of error while saving', function(done) {
@@ -49,7 +55,7 @@ describe('controllers', function() {
             backend.flush();
             expect(scope.notification.type).toBe('danger'); 
             expect(scope.notification.message).toBe('Internal Server Error'); 
-        });    
+        });     
     });    
 
     xdescribe('Nav controller', function() {

@@ -18,12 +18,23 @@ angular.module('scrello.services', []).
                 }, 3000);
         };
     }).
-    factory('organizations', function($http, $q) {        
+    factory('organizations', function($http, $q, $rootScope) {        
         var deferred = $q.defer();
         var promise = $http.get('/trello/members/me/organizations', { cache: true })
             .success(function (data) {
-                if (data.length > 0)
-                    deferred.resolve(data);
+                if (data.length > 0) {                    
+                    var extendedData = {
+                        orgs: data,
+                        getCurrent: function () {
+                            return $rootScope.currentOrg;
+                        },
+                        setCurrent: function (org) {
+                            $rootScope.currentOrg = org;
+                        }
+                    };
+                    extendedData.setCurrent(data[0]);
+                    deferred.resolve(extendedData);
+                }
                 else
                     deferred.reject('No organizations were found.')
             })

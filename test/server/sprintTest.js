@@ -26,7 +26,8 @@ describe('sprint route', function() {
         it('should return the id of the sprint once saved', function(done) {
             var sprint = {
                 startDate: '2014/03/01',
-                endDate: '2014/03/10'
+                endDate: '2014/03/10',
+                org: '1'
             };
             request(app)
                 .post('/sprints')
@@ -60,7 +61,8 @@ describe('sprint model', function() {
         var startDate = addDays(endDate, 1);
         Sprint.create({
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            org: '1'
         }, function (err, data) {
             err.should.not.be.null;
             done();
@@ -73,7 +75,8 @@ describe('sprint model', function() {
 
         Sprint.create({
             startDate: start,
-            endDate: addDays(start, 2)
+            endDate: addDays(start, 2),
+            org: '1'
         }, function (err, data) {
             if (!err)
                 Sprint.create({
@@ -93,7 +96,8 @@ describe('sprint model', function() {
 
         Sprint.create({
             startDate: startSaved,
-            endDate: addDays(startSaved, 7)
+            endDate: addDays(startSaved, 7),
+            org: '1'
         }, function (err, data) {
             if (!err)
                 Sprint.create({

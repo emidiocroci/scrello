@@ -64,6 +64,31 @@ describe('service', function() {
             backend.flush();
             expect(res).toBeDefined();
         }));
+
+        it('should return an object with retrieved organizations and getCurrent() and setCurrent() methods', inject(function ($injector) {
+            var getCurrent;
+            var setCurrent;
+            backend
+                .expectGET('/trello/members/me/organizations')
+                .respond(200, [{ id: '1', name: 'org1' }, { id: '2', name: 'org2' }]);
+            orgs = $injector.get('organizations');
+            orgs.then(function (data) { getCurrent = data.getCurrent; setCurrent = data.setCurrent; }, function (data) { })
+            backend.flush();
+            expect(getCurrent).toBeDefined();            
+            expect(setCurrent).toBeDefined();            
+        }));
+
+        it('should return the first element of the organizations as the current org', inject(function ($injector) {
+            var res;
+            backend
+                .expectGET('/trello/members/me/organizations')
+                .respond(200, [{ id: '1', name: 'org1' }, { id: '2', name: 'org2' }]);
+            orgs = $injector.get('organizations');
+            orgs.then(function (data) { res = data.getCurrent; }, function (data) { })
+            backend.flush();
+            expect(res().id).toBe('1');
+            expect(res().name).toBe('org1');
+        }));
     });
 
 });
