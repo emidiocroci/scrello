@@ -34,3 +34,4 @@ process.on('SIGINT', function() {
 // load schemas
 exports.User = require('./user');
 exports.Sprint = require('./sprint');
+exports.Org = require('./organization');
