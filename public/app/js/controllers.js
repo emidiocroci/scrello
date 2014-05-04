@@ -15,7 +15,7 @@ angular.module('scrello.controllers', ['scrello.services']).
                 });
         };        
     })
-    .controller('NavCtrl', function($scope, $http, notify, organizations) {                
+    .controller('OrgCtrl', function($scope, $http, notify, organizations) {                
         organizations.then(function (data) {            
             $scope.organizations = data;
             $scope.organization = $scope.organizations.getCurrent();                

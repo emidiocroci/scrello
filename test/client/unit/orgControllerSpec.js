@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Nav controller', function() {
+describe('org controller', function() {
 
 	var controller,
 		scope,
@@ -30,7 +30,7 @@ describe('Nav controller', function() {
 	it('should set the selected organization to the first of the received collection', inject(function($controller) {
 		http.expectGET('/trello/members/me/organizations')
 			.respond(200, expectedOrgs);
-		controller = $controller('NavCtrl', { $scope: scope });        
+		controller = $controller('OrgCtrl', { $scope: scope });        
 		http.flush();
 		expect(scope.organization.id).toBe(expectedOrgs[0].id);
 		expect(scope.organization.name).toBe(expectedOrgs[0].name);
@@ -39,7 +39,7 @@ describe('Nav controller', function() {
     it('should notify the user that must belong to an organization if no organization are found', inject(function ($controller) {            
         http.expectGET('/trello/members/me/organizations')
             .respond(200, []);
-        controller = $controller('NavCtrl', { $scope: scope });            
+        controller = $controller('OrgCtrl', { $scope: scope });            
         http.flush();
         expect(scope.notification.type).toBe('danger');
         expect(scope.notification.message).toMatch(/trello.com/);            
@@ -48,7 +48,7 @@ describe('Nav controller', function() {
     it('should notify the users if an error occurs while loading organizations', inject(function($controller) {
         http.expectGET('/trello/members/me/organizations')
             .respond(500, 'An error occurred');
-        controller = $controller('NavCtrl', { $scope: scope });            
+        controller = $controller('OrgCtrl', { $scope: scope });            
         http.flush();
         expect(scope.notification.type).toBe('danger');
         expect(scope.notification.message).toMatch(/An error occurred/);            
