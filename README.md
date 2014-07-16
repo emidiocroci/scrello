@@ -37,4 +37,8 @@ In order to run tests, you need to have installed *grunt* and *grunt-cli*
 
 To run tests you have to execute:
 
+	~$ sudo TRELLO_KEY=key TRELLO_SECRET=secret grunt mochaTest
+
+or if you set them as environment variables
+
 	~$ grunt mochaTest
