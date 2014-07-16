@@ -12,6 +12,8 @@ You can use the key and secret values in this way:
 
 	~$ sudo TRELLO_KEY=key TRELLO_SECRET=secret node app.js
 
+Otherwise you can define TRELLO_KEY and TRELLO_SECRET as environment variables of your operating system.
+
 Installation Requirements
 =========================
 
@@ -27,3 +29,12 @@ Scrello uses several dependencies which are listed in the `package.json` file so
 Now you can run your Scrello installation just typing:
 
 	~$ node app.js
+	
+How To Run Tests
+=========================
+
+In order to run tests, you need to have installed *grunt* and *grunt-cli*
+
+To run tests you have to execute:
+
+	~$ grunt mochaTest
